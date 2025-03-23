@@ -34,6 +34,22 @@ func generateBlock(oldBlock Block, BPM int) (Block, error) {
 	return newBlock, nil
 }
 
+func isBlockValid(newBlock, oldBlock Block) bool {
+	if newBlock.Index-1 != oldBlock.Index {
+		return false
+	}
+
+	if newBlock.PrevHash != oldBlock.Hash {
+		return false
+	}
+
+	if newBlock.Hash != calculateHash(newBlock) {
+		return false
+	}
+
+	return true
+}
+
 func main() {
 
 }
